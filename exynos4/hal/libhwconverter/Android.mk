@@ -28,7 +28,8 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/frameworks/native/include/media/openmax \
 	$(TOP)/$(TARGET_OMX_PATH)/include/sec
 
-LOCAL_MODULE_TAGS := eng
+#LOCAL_MODULE_TAGS := eng
+LOCAL_MODULE_TAGS := userdebug
 LOCAL_MODULE := libhwconverter
 
 include $(BUILD_SHARED_LIBRARY)
