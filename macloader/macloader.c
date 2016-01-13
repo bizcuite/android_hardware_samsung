@@ -27,6 +27,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <pwd.h>
+#include <errno.h>
 
 #include <cutils/log.h>
 
@@ -175,6 +176,7 @@ int main() {
         strncasecmp(mac_addr_half, "60:21:c0", 9) == 0 ||
         strncasecmp(mac_addr_half, "88:30:8a", 9) == 0 ||
         strncasecmp(mac_addr_half, "f0:27:65", 9) == 0 ||
+        strncasecmp(mac_addr_half, "98:F1:70", 9) == 0 ||
         strncasecmp(mac_addr_half, "fc:c2:de", 9) == 0) {
         type = MURATA;
     }

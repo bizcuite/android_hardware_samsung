@@ -28,6 +28,8 @@
  * limitations under the License.
  */
 
+#include <graphics.h>
+#include <../include/pixelflinger/format.h>
 #include <errno.h>
 #include <pthread.h>
 

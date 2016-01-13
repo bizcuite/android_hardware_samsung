@@ -36,6 +36,7 @@
 #include <hardware/hardware.h>
 #include <hardware/gralloc.h>
 #include "sec_format.h"
+#include "graphics.h"
 
 #include "gralloc_priv.h"
 #include "gralloc_helper.h"
@@ -59,7 +60,7 @@
 #include <sys/ioctl.h>
 
 #if HAVE_ANDROID_OS
-#include <pixelflinger/format.h>
+#include <../include/pixelflinger/format.h>
 #endif
 
 #include "videodev2.h"
