@@ -44,11 +44,10 @@
 
 #undef  SEC_LOG_TAG
 #define SEC_LOG_TAG    "SEC_VIDEO_DEC"
-#define SEC_LOG_OFF
 #include "SEC_OSAL_Log.h"
 
 
-inline void SEC_UpdateFrameSize(OMX_COMPONENTTYPE *pOMXComponent)
+void SEC_UpdateFrameSize(OMX_COMPONENTTYPE *pOMXComponent)
 {
     SEC_OMX_BASECOMPONENT *pSECComponent = (SEC_OMX_BASECOMPONENT *)pOMXComponent->pComponentPrivate;
     SEC_OMX_BASEPORT      *secInputPort = &pSECComponent->pSECPort[INPUT_PORT_INDEX];
