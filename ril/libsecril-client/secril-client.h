@@ -154,7 +154,7 @@ typedef enum _AudioPath {
 /**
  * ExtraVolume
  */
-#ifdef RIL_CALL_AUIO_PATH_EXTRAVOLUME
+#ifdef RIL_CALL_AUDIO_PATH_EXTRAVOLUME
 typedef enum _ExtraVolume {
     ORIGINAL_PATH,
     EXTRA_VOLUME_PATH
