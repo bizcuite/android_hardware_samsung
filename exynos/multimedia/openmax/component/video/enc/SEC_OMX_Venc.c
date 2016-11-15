@@ -866,6 +866,11 @@ OMX_BOOL SEC_Preprocessor_InputData(OMX_COMPONENTTYPE *pOMXComponent)
         }
 
         ret = OMX_TRUE;
+    } else if (flagEOS == OMX_TRUE) {
+        SEC_OMX_DATABUFFER *outputUseBuffer = &pSECComponent->secDataBuffer[OUTPUT_PORT_INDEX];
+        outputUseBuffer->nFlags = inputUseBuffer->nFlags;
+        SEC_OutputBufferReturn(pOMXComponent);
+        ret = OMX_FALSE;
     } else {
         ret = OMX_FALSE;
     }
@@ -1240,30 +1245,6 @@ OMX_ERRORTYPE SEC_OMX_VideoEncodeGetParameter(
 #endif
     }
         break;
-    case OMX_IndexParamVideoIntraRefresh:
-    {
-        OMX_VIDEO_PARAM_INTRAREFRESHTYPE    *pIntraRefresh  = (OMX_VIDEO_PARAM_INTRAREFRESHTYPE *)ComponentParameterStructure;
-        OMX_U32                              nPortIndex     = pIntraRefresh->nPortIndex;
-        SEC_OMX_VIDEOENC_COMPONENT          *pVideoEnc      = NULL;
-
-        ret = SEC_OMX_Check_SizeVersion(pIntraRefresh, sizeof(OMX_VIDEO_PARAM_INTRAREFRESHTYPE));
-        if (ret != OMX_ErrorNone)
-            goto EXIT;
-
-        if (nPortIndex != OUTPUT_PORT_INDEX) {
-            ret = OMX_ErrorBadPortIndex;
-            goto EXIT;
-        }
-
-        pVideoEnc = (SEC_OMX_VIDEOENC_COMPONENT *)pSECComponent->hComponentHandle;
-        pIntraRefresh->eRefreshMode = pVideoEnc->intraRefresh.eRefreshMode;
-        pIntraRefresh->nAirMBs      = pVideoEnc->intraRefresh.nAirMBs;
-        pIntraRefresh->nAirRef      = pVideoEnc->intraRefresh.nAirRef;
-        pIntraRefresh->nCirMBs      = pVideoEnc->intraRefresh.nCirMBs;
-
-        ret = OMX_ErrorNone;
-    }
-        break;
     default:
     {
         ret = SEC_OMX_GetParameter(hComponent, nParamIndex, ComponentParameterStructure);
@@ -1433,35 +1414,6 @@ OMX_ERRORTYPE SEC_OMX_VideoEncodeSetParameter(
     }
         break;
 #endif
-    case OMX_IndexParamVideoIntraRefresh:
-    {
-        OMX_VIDEO_PARAM_INTRAREFRESHTYPE    *pIntraRefresh  = (OMX_VIDEO_PARAM_INTRAREFRESHTYPE *)ComponentParameterStructure;
-        OMX_U32                              nPortIndex     = pIntraRefresh->nPortIndex;
-        SEC_OMX_VIDEOENC_COMPONENT       *pVideoEnc      = NULL;
-
-        ret = SEC_OMX_Check_SizeVersion(pIntraRefresh, sizeof(OMX_VIDEO_PARAM_INTRAREFRESHTYPE));
-        if (ret != OMX_ErrorNone)
-            goto EXIT;
-
-        if (nPortIndex != OUTPUT_PORT_INDEX) {
-            ret = OMX_ErrorBadPortIndex;
-            goto EXIT;
-        }
-
-        pVideoEnc = (SEC_OMX_VIDEOENC_COMPONENT *)pSECComponent->hComponentHandle;
-        if (pIntraRefresh->eRefreshMode == OMX_VIDEO_IntraRefreshCyclic) {
-            pVideoEnc->intraRefresh.eRefreshMode    = pIntraRefresh->eRefreshMode;
-            pVideoEnc->intraRefresh.nCirMBs         = pIntraRefresh->nCirMBs;
-            SEC_OSAL_Log(SEC_LOG_TRACE, "OMX_VIDEO_IntraRefreshCyclic Enable, nCirMBs: %d",
-                            pVideoEnc->intraRefresh.nCirMBs);
-        } else {
-            ret = OMX_ErrorUnsupportedSetting;
-            goto EXIT;
-        }
-
-        ret = OMX_ErrorNone;
-    }
-        break;
     default:
     {
         ret = SEC_OMX_SetParameter(hComponent, nIndex, ComponentParameterStructure);

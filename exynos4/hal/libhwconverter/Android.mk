@@ -25,11 +25,10 @@ LOCAL_SRC_FILES := HardwareConverter.cpp
 LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/../include \
 	$(TOP)/$(TARGET_HAL_PATH)/include \
-	$(TOP)/frameworks/native/include/media/openmax \
+	$(TOP)/$(TARGET_OMX_PATH)/include/khronos \
 	$(TOP)/$(TARGET_OMX_PATH)/include/sec
 
-#LOCAL_MODULE_TAGS := eng
-LOCAL_MODULE_TAGS := userdebug
+LOCAL_MODULE_TAGS := eng
 LOCAL_MODULE := libhwconverter
 
 include $(BUILD_SHARED_LIBRARY)

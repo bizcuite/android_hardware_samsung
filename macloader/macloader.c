@@ -173,10 +173,10 @@ int main() {
         strncasecmp(mac_addr_half, "5c:da:d4", 9) == 0 ||
         strncasecmp(mac_addr_half, "5c:f8:a1", 9) == 0 ||
         strncasecmp(mac_addr_half, "78:4b:87", 9) == 0 ||
+        strncasecmp(mac_addr_half, "78:52:1A", 9) == 0 ||
         strncasecmp(mac_addr_half, "60:21:c0", 9) == 0 ||
         strncasecmp(mac_addr_half, "88:30:8a", 9) == 0 ||
         strncasecmp(mac_addr_half, "f0:27:65", 9) == 0 ||
-        strncasecmp(mac_addr_half, "98:F1:70", 9) == 0 ||
         strncasecmp(mac_addr_half, "fc:c2:de", 9) == 0) {
         type = MURATA;
     }
@@ -184,7 +184,6 @@ int main() {
     /* semcosh */
     if (strncasecmp(mac_addr_half, "34:23:ba", 9) == 0 ||
         strncasecmp(mac_addr_half, "38:aa:3c", 9) == 0 ||
-        strncasecmp(mac_addr_half, "50:cc:f8", 9) == 0 ||
         strncasecmp(mac_addr_half, "5c:0a:5b", 9) == 0 ||
         strncasecmp(mac_addr_half, "88:32:9b", 9) == 0 ||
         strncasecmp(mac_addr_half, "90:18:7c", 9) == 0 ||
@@ -193,13 +192,15 @@ int main() {
     }
 
     /* semco3rd */
-    if (strncasecmp(mac_addr_half, "f4:09:d8", 9) == 0) {
+    if (strncasecmp(mac_addr_half, "ec:1f:72", 9) == 0 ||
+        strncasecmp(mac_addr_half, "f4:09:d8", 9) == 0) {
         type = SEMCO3RD;
     }
 
     /* semco */
-    if (strncasecmp(mac_addr_half, "c0:bd:d1", 9) == 0 ||
-        strncasecmp(mac_addr_half, "51:f6:6b", 9) == 0) {
+    if (strncasecmp(mac_addr_half, "51:f6:6b", 9) == 0 ||
+        strncasecmp(mac_addr_half, "c0:bd:d1", 9) == 0 ||
+        strncasecmp(mac_addr_half, "ec:9b:f3", 9) == 0) {
         type = SEMCO;
     }
 
