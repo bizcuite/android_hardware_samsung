@@ -3394,8 +3394,7 @@ static int responseSimRefresh(Parcel &p, void *response, size_t responselen) {
     return 0;
 }
 
-static int responseCellInfoList(Parcel &p, void *response, size_t responselen)
-{
+static int responseCellInfoListV6(Parcel &p, void *response, size_t responselen) {
     if (response == NULL && responselen != 0) {
         RLOGE("invalid response: NULL");
         return RIL_ERRNO_INVALID_RESPONSE;
